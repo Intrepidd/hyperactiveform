@@ -22,7 +22,7 @@ And then execute:
 
 Run the install generator:
 
-    $ rails generate hyperactiveform:install
+    $ rails generate hyper_active_form:install
 
 this will create an `ApplicationForm` class in your app/forms directory. You can use it as a base class for your form objects.
 
