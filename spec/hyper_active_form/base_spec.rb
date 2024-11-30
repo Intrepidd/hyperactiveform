@@ -68,9 +68,9 @@ RSpec.describe HyperActiveForm::Base do
       end
     end
 
-    context "when the form raises a CancelFormSubmitError" do
+    context "when the form raises a CancelFormSubmit" do
       it "returns false" do
-        expect(callable).to receive(:call).and_raise(HyperActiveForm::CancelFormSubmitError)
+        expect(callable).to receive(:call).and_raise(HyperActiveForm::CancelFormSubmit)
         form = dummy_class.new(name: "John", age: 20, callable:)
         expect(form.submit(name: "Fred", age: 19)).to eq(false)
       end

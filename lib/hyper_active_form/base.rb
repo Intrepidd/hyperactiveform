@@ -35,7 +35,7 @@ module HyperActiveForm
     def submit(params)
       assign_form_attributes(params)
       !!(valid? && perform)
-    rescue HyperActiveForm::CancelFormSubmitError
+    rescue HyperActiveForm::CancelFormSubmit
       false
     end
 

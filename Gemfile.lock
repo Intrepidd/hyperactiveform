@@ -197,7 +197,7 @@ PLATFORMS
 DEPENDENCIES
   hyperactiveform!
   rake (~> 13.0)
-  rspec (~> 3.0)
+  rspec (~> 3.13)
 
 BUNDLED WITH
    2.5.18

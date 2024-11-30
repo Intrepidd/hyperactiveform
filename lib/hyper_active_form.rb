@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HyperActiveForm
-  class CancelFormSubmitError < StandardError; end
+  class CancelFormSubmit < StandardError; end
   class FormDidNotSubmitError < StandardError; end
 end
 
