@@ -1,0 +1,31 @@
+name: build
+on: push
+jobs:
+  specs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        ruby_version:
+          - 3.2.6
+          - 3.3.6
+        gemfile:
+          - gemfiles/Gemfile.rails-7.1.x
+          - gemfiles/Gemfile.rails-7.2.x
+          - gemfiles/Gemfile.rails-8.x
+    env:
+      BUNDLE_GEMFILE: ${{ matrix.gemfile }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+            ruby-version: ${{ matrix.ruby_version }}
+            bundler-cache: true
+
+      - name: Run rspec
+        run: bundle exec rspec
