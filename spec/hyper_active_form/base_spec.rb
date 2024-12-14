@@ -51,6 +51,12 @@ RSpec.describe HyperActiveForm::Base do
       expect(form.age).to eq(nil)
       expect(form.hobbies).to eq([])
     end
+
+    it "runs the assign_form_attributes callback" do
+      form = dummy_class.new(name: "John", age: 20)
+      expect(form).to receive(:run_callbacks).with(:assign_form_attributes)
+      form.assign_form_attributes(name: "Mike")
+    end
   end
 
   describe "#submit" do
@@ -59,6 +65,12 @@ RSpec.describe HyperActiveForm::Base do
         form = dummy_class.new(name: "John", age: 20, callable:)
         expect(callable).to receive(:call)
         expect(form.submit(name: "Fred", age: 19)).to eq(true)
+      end
+
+      it "runs the submit callback" do
+        form = dummy_class.new(name: "John", age: 20, callable:)
+        expect(form).to receive(:run_callbacks).with(:submit)
+        form.submit(name: "Fred", age: 19)
       end
 
     end

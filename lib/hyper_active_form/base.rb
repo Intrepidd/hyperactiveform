@@ -8,6 +8,9 @@ module HyperActiveForm
     include ActiveModel::Model
     include ActiveModel::Attributes
     include ActiveModel::Validations
+    extend ActiveModel::Callbacks
+
+    define_model_callbacks :assign_form_attributes, :submit
 
     def self.proxy_for(klass, object)
       delegate :new_record?, :persisted?, :id, to: object
@@ -26,16 +29,20 @@ module HyperActiveForm
     end
 
     def assign_form_attributes(params)
-      params = ActionController::Parameters.new(params) unless params.is_a?(ActionController::Parameters)
-      attribute_names.each do |attribute|
-        default_value = self.class._default_attributes[attribute]&.value_before_type_cast
-        public_send(:"#{attribute}=", params&.dig(attribute) || default_value)
+      run_callbacks :assign_form_attributes do
+        params = ActionController::Parameters.new(params) unless params.is_a?(ActionController::Parameters)
+        attribute_names.each do |attribute|
+          default_value = self.class._default_attributes[attribute]&.value_before_type_cast
+          public_send(:"#{attribute}=", params&.dig(attribute) || default_value)
+        end
       end
     end
 
     def submit(params)
-      assign_form_attributes(params)
-      !!(valid? && perform)
+      run_callbacks :submit do
+        assign_form_attributes(params)
+        !!(valid? && perform)
+      end
     rescue HyperActiveForm::CancelFormSubmit
       false
     end
