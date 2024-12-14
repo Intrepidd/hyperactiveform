@@ -12,6 +12,7 @@ RSpec.describe HyperActiveForm::Base do
     Class.new(HyperActiveForm::Base) do
       attribute :name
       attribute :age
+      attribute :hobbies, default: []
 
       def self.model_name
         ActiveModel::Name.new(self, nil, "Dummy")
@@ -39,6 +40,16 @@ RSpec.describe HyperActiveForm::Base do
       form = dummy_class.new(name: "John", age: 20)
       expect(form.name).to eq("John")
       expect(form.age).to eq(20)
+    end
+  end
+
+  describe "#assign_form_attributes" do
+    it "assigns attributes from params or defaults or nil" do
+      form = dummy_class.new(name: "John", age: 20)
+      form.assign_form_attributes(name: "Mike")
+      expect(form.name).to eq("Mike")
+      expect(form.age).to eq(nil)
+      expect(form.hobbies).to eq([])
     end
   end
 
