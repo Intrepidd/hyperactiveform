@@ -211,3 +211,27 @@ class UsersController < ApplicationController
     @users = @form.results
   end
 end
+```
+
+## Callbacks
+
+HyperActiveForm provides callbacks for `assign_form_attributes` and `submit`.
+
+You can use these callbacks to run code before or after assigning the form attributes or before or after submitting the form.
+
+```ruby
+class ProfileForm < ApplicationForm
+  # ...
+
+  before_submit :do_something_before_submit
+  before_assign_form_attributes :do_something_before_assign_form_attributes
+
+  def do_something_before_submit
+    # Do something before submitting the form
+  end
+
+  def do_something_before_assign_form_attributes
+    # Do something before assigning the form attributes
+  end
+end
+```
