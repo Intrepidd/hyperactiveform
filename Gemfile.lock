@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    hyperactiveform (0.1.0)
+    hyperactiveform (0.3.0)
       rails (>= 7.0)
 
 GEM
