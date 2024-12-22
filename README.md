@@ -26,6 +26,16 @@ Run the install generator:
 
 this will create an `ApplicationForm` class in your app/forms directory. You can use it as a base class for your form objects.
 
+## Generators
+
+You can [generate](https://guides.rubyonrails.org/configuring.html#configuring-generators) a form and its tests with the following command:
+
+```
+$ rails generate form FooBar
+```
+
+This will create the `FooBarForm`
+
 ## Usage
 
 Here is an example of an `HyperActiveForm` form object:
