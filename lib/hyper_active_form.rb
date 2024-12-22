@@ -7,4 +7,3 @@ end
 
 require_relative "hyper_active_form/version"
 require_relative "hyper_active_form/base"
-require_relative "hyper_active_form/generators"
