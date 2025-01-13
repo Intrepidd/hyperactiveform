@@ -126,6 +126,40 @@
 
 
 
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#assigned_attribute_names-instance_method" title="#assigned_attribute_names (instance method)">#<strong>assigned_attribute_names</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>The list of attribute names that have been passed to the form during the last call to ‘assign_form_attributes` or `submit`.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
 
 
 
@@ -372,13 +406,13 @@
       <pre class="lines">
 
 
-32
-33
-34
-35</pre>
+36
+37
+38
+39</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='comma'>,</span> <span class='op'>**</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='rparen'>)</span>
@@ -390,6 +424,54 @@
 </div>
   
 </div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="assigned_attribute_names-instance_method">
+  
+    #<strong>assigned_attribute_names</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>The list of attribute names that have been passed to the form during the last call to ‘assign_form_attributes` or `submit`</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_assigned_attribute_names'>assigned_attribute_names</span>
+  <span class='ivar'>@assigned_attribute_names</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
 
 
   <div id="class_method_details" class="method_details_list">
@@ -458,13 +540,13 @@
       <pre class="lines">
 
 
-27
-28
-29
-30</pre>
+31
+32
+33
+34</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 27</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_proxy_for'>proxy_for</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='comma'>,</span> <span class='id identifier rubyid_object'>object</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_delegate'>delegate</span> <span class='symbol'>:new_record?</span><span class='comma'>,</span> <span class='symbol'>:persisted?</span><span class='comma'>,</span> <span class='symbol'>:id</span><span class='comma'>,</span> <span class='label'>to:</span> <span class='id identifier rubyid_object'>object</span>
@@ -527,16 +609,16 @@
       <pre class="lines">
 
 
-84
-85
-86
-87
-88
 89
-90</pre>
+90
+91
+92
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 89</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_errors_from'>add_errors_from</span><span class='lparen'>(</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_error'>error</span><span class='op'>|</span>
@@ -596,18 +678,19 @@
       <pre class="lines">
 
 
-49
-50
-51
-52
 53
 54
 55
 56
-57</pre>
+57
+58
+59
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 49</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assign_form_attributes'>assign_form_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_run_callbacks'>run_callbacks</span> <span class='symbol'>:assign_form_attributes</span> <span class='kw'>do</span>
@@ -616,6 +699,7 @@
       <span class='id identifier rubyid_default_value'>default_value</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid__default_attributes'>_default_attributes</span><span class='lbracket'>[</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_value_before_type_cast'>value_before_type_cast</span>
       <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='symbol'>:&quot;#{</span><span class='id identifier rubyid_attribute'>attribute</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='op'>&amp;.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_default_value'>default_value</span><span class='rparen'>)</span>
     <span class='kw'>end</span>
+    <span class='ivar'>@assigned_attribute_names</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_slice'>slice</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_attribute_names'>attribute_names</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -660,12 +744,12 @@
       <pre class="lines">
 
 
-39
-40
-41</pre>
+43
+44
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 39</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perform'>perform</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='const'>NotImplementedError</span>
@@ -690,10 +774,10 @@
       <pre class="lines">
 
 
-37</pre>
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_setup'>setup</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
     </td>
@@ -765,17 +849,17 @@
       <pre class="lines">
 
 
-64
-65
-66
-67
-68
 69
 70
-71</pre>
+71
+72
+73
+74
+75
+76</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_submit'>submit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_run_callbacks'>run_callbacks</span> <span class='symbol'>:submit</span> <span class='kw'>do</span>
@@ -854,12 +938,12 @@
       <pre class="lines">
 
 
-77
-78
-79</pre>
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 77</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_submit!'>submit!</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_submit'>submit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../HyperActiveForm.html" title="HyperActiveForm (module)">HyperActiveForm</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="FormDidNotSubmitError.html" title="HyperActiveForm::FormDidNotSubmitError (class)">FormDidNotSubmitError</a></span></span><span class='rparen'>)</span>
@@ -874,7 +958,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Dec 14 13:22:03 2024 by
+  Generated on Mon Jan 13 17:26:04 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.1).
 </div>

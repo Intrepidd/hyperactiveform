@@ -87,6 +87,15 @@
 
 <p>this will create an <code>ApplicationForm</code> class in your app/forms directory. You can use it as a base class for your form objects.</p>
 
+<h2 id="label-Generators">Generators</h2>
+
+<p>You can <a href="https://guides.rubyonrails.org/configuring.html#configuring-generators">generate</a> a form and its tests with the following command:</p>
+
+<pre class="code ruby"><code class="ruby">$ rails generate form FooBar
+</code></pre>
+
+<p>This will create the <code>FooBarForm</code></p>
+
 <h2 id="label-Usage">Usage</h2>
 
 <p>Here is an example of an <code>HyperActiveForm</code> form object:</p>
@@ -257,11 +266,40 @@
 
 <p>And in the controller:</p>
 
-<p>“‘ruby class UsersController &lt; ApplicationController def index @form = UserSearchForm.new @<a href=":user">form.submit!(params</a>) @users = @form.results end end</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>UsersController</span> <span class='op'>&lt;</span> <span class='const'>ApplicationController</span>
+  <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
+    <span class='ivar'>@form</span> <span class='op'>=</span> <span class='const'>UserSearchForm</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_submit!'>submit!</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:user</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='ivar'>@users</span> <span class='op'>=</span> <span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_results'>results</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
+
+<h2 id="label-Callbacks">Callbacks</h2>
+
+<p>HyperActiveForm provides callbacks for <code>assign_form_attributes</code> and <code>submit</code>.</p>
+
+<p>You can use these callbacks to run code before or after assigning the form attributes or before or after submitting the form.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>ProfileForm</span> <span class='op'>&lt;</span> <span class='const'>ApplicationForm</span>
+  <span class='comment'># ...
+</span>
+  <span class='id identifier rubyid_before_submit'>before_submit</span> <span class='symbol'>:do_something_before_submit</span>
+  <span class='id identifier rubyid_before_assign_form_attributes'>before_assign_form_attributes</span> <span class='symbol'>:do_something_before_assign_form_attributes</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_do_something_before_submit'>do_something_before_submit</span>
+    <span class='comment'># Do something before submitting the form
+</span>  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_do_something_before_assign_form_attributes'>do_something_before_assign_form_attributes</span>
+    <span class='comment'># Do something before assigning the form attributes
+</span>  <span class='kw'>end</span>
+<span class='kw'>end</span>
+</code></pre>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Dec 14 13:22:03 2024 by
+  Generated on Mon Jan 13 17:26:04 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.3.1).
 </div>
