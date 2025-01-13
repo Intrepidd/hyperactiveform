@@ -19,6 +19,10 @@ module HyperActiveForm
 
     define_model_callbacks :assign_form_attributes, :submit
 
+    # The list of attribute names that have been passed to the form
+    # during the last call to `assign_form_attributes` or `submit`
+    attr_reader :assigned_attribute_names
+
     # Defines to which object the form should delegate the active model methods
     # This is useful so `form_for`/`form_with` can automatically deduce the url and method to use
     #
@@ -53,6 +57,7 @@ module HyperActiveForm
           default_value = self.class._default_attributes[attribute]&.value_before_type_cast
           public_send(:"#{attribute}=", params&.dig(attribute) || default_value)
         end
+        @assigned_attribute_names = params.slice(*attribute_names).keys
       end
     end
 

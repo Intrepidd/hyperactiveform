@@ -118,6 +118,33 @@ RSpec.describe HyperActiveForm::Base do
     end
   end
 
+  describe "#assigned_attribute_names" do
+    context "passing some attributes" do
+      it "returns the list of attributes" do
+        form = dummy_class.new(name: "John", age: 20)
+        form.submit(name: "Fred", age: 19)
+        expect(form.assigned_attribute_names).to eq(%w[name age])
+      end
+    end
+
+    context "passing all attributes" do
+      it "returns the list of attributes" do
+        form = dummy_class.new(name: "John", age: 20)
+        form.submit(name: "Fred", age: 19, hobbies: ["reading", "coding"])
+        expect(form.assigned_attribute_names).to eq(%w[name age hobbies])
+      end
+    end
+
+    context "multiple calls" do
+      it "returns the last list of attributes" do
+        form = dummy_class.new(name: "John", age: 20)
+        form.submit(name: "Fred", age: 19, hobbies: ["reading", "coding"])
+        form.submit(name: "John", age: 20)
+        expect(form.assigned_attribute_names).to eq(%w[name age])
+      end
+    end
+  end
+
   describe ".proxy_for" do
     let(:dummy_class) do
       Class.new(HyperActiveForm::Base) do
