@@ -55,7 +55,11 @@ module HyperActiveForm
         params = ActionController::Parameters.new(params) unless params.is_a?(ActionController::Parameters)
         attribute_names.each do |attribute|
           default_value = self.class._default_attributes[attribute]&.value_before_type_cast
-          public_send(:"#{attribute}=", params&.dig(attribute) || default_value)
+          if params&.key?(attribute)
+          public_send(:"#{attribute}=", params&.dig(attribute))
+          else
+            public_send(:"#{attribute}=", default_value)
+          end
         end
         @assigned_attribute_names = params.slice(*attribute_names).keys
       end

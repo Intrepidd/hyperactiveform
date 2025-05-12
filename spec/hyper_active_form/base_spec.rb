@@ -13,6 +13,7 @@ RSpec.describe HyperActiveForm::Base do
       attribute :name
       attribute :age
       attribute :hobbies, default: []
+      attribute :likes_cats, :boolean
 
       def self.model_name
         ActiveModel::Name.new(self, nil, "Dummy")
@@ -29,7 +30,7 @@ RSpec.describe HyperActiveForm::Base do
       end
 
       def perform
-        @callable&.call
+        @callable&.call(attributes)
         @perform_return_value
       end
     end
@@ -63,7 +64,7 @@ RSpec.describe HyperActiveForm::Base do
     context "when the form is valid" do
       it "returns true and performs the form" do
         form = dummy_class.new(name: "John", age: 20, callable:)
-        expect(callable).to receive(:call)
+        expect(callable).to receive(:call).with({"name" => "Fred", "age" => 19, "hobbies" => [], "likes_cats" => nil})
         expect(form.submit(name: "Fred", age: 19)).to eq(true)
       end
 
@@ -71,6 +72,14 @@ RSpec.describe HyperActiveForm::Base do
         form = dummy_class.new(name: "John", age: 20, callable:)
         expect(form).to receive(:run_callbacks).with(:submit)
         form.submit(name: "Fred", age: 19)
+      end
+
+      context "with falsey parameters" do
+        it "assigns the attributes correctly" do
+          form = dummy_class.new(name: "John", age: 20, callable:)
+          expect(callable).to receive(:call).with({"name" => "Fred", "age" => 19, "hobbies" => [], "likes_cats" => false})
+          form.submit(name: "Fred", age: 19, likes_cats: false)
+        end
       end
 
     end
