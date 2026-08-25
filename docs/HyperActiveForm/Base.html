@@ -6,13 +6,13 @@
 <title>
   Class: HyperActiveForm::Base
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "HyperActiveForm::Base";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="../class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -104,18 +106,18 @@
   
   <dl>
     <dt>Defined in:</dt>
-    <dd>lib/hyper_active_form/base.rb</dd>
+    <dd>lib/hyper_active_form/base.rb
+</dd>
   </dl>
   
 </div>
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    
-<p>Base class for HyperActiveForm objects</p>
-
-<p>HyperActiveForm objects are simple ActiveModel objects that encapsulate form logic and validations. They are designed to be subclassed and customized to fit the needs of your application.</p>
-
+    <p>Base class for HyperActiveForm objects</p>
+<p>HyperActiveForm objects are simple ActiveModel objects that encapsulate
+form logic and validations. They are designed to be subclassed and
+customized to fit the needs of your application.</p>
 
   </div>
 </div>
@@ -151,9 +153,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>The list of attribute names that have been passed to the form during the last call to ‘assign_form_attributes` or `submit`.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>The list of attribute names that have been passed to the form during the last call to <code>assign_form_attributes</code> or <code>submit</code>.</p></div></span>
   
 </li>
 
@@ -188,14 +188,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Defines to which object the form should delegate the active model methods This is useful so ‘form_for`/`form_with` can automatically deduce the url and method to use.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Defines to which object the form should delegate the active model methods This is useful so <code>form_for</code>/<code>form_with</code> can automatically deduce the url and method to use.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
     <h2>
       Instance Method Summary
@@ -221,9 +220,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Adds the errors from a model to the form.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Adds the errors from a model to the form.</p></div></span>
   
 </li>
 
@@ -231,7 +228,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#assign_form_attributes-instance_method" title="#assign_form_attributes (instance method)">#<strong>assign_form_attributes</strong>(params)  &#x21d2; Object </a>
+      <a href="#assign_form_attributes-instance_method" title="#assign_form_attributes (instance method)">#<strong>assign_form_attributes</strong>(params = nil, **options)  &#x21d2; Object </a>
     
 
     
@@ -245,9 +242,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Assigns the attributes of the form from the params This method is called by the ‘submit` method, but can also be called directly if you need to assign the attributes without submitting the form for example if you want to refresh the form with new data.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Assigns the attributes of the form from the params This method is called by the <code>submit</code> method, but can also be called directly if you need to assign the attributes without submitting the form for example if you want to refresh the form with new data.</p></div></span>
   
 </li>
 
@@ -271,9 +266,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>A new instance of Base.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>A new instance of Base.</p></div></span>
   
 </li>
 
@@ -325,7 +318,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#submit-instance_method" title="#submit (instance method)">#<strong>submit</strong>(params)  &#x21d2; Boolean </a>
+      <a href="#submit-instance_method" title="#submit (instance method)">#<strong>submit</strong>(params = nil, **options)  &#x21d2; Boolean </a>
     
 
     
@@ -339,9 +332,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Submits the form, assigning the attributes from the params, running validations and calling the ‘perform` method if the form is valid.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Submits the form, assigning the attributes from the params, running validations and calling the <code>perform</code> method if the form is valid.</p></div></span>
   
 </li>
 
@@ -349,7 +340,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#submit!-instance_method" title="#submit! (instance method)">#<strong>submit!</strong>(params)  &#x21d2; Boolean </a>
+      <a href="#submit!-instance_method" title="#submit! (instance method)">#<strong>submit!</strong>(params = nil, **options)  &#x21d2; Boolean </a>
     
 
     
@@ -363,14 +354,13 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
-<p>Same as ‘submit` but raises a `FormDidNotSubmitError` if the form is not valid.</p>
-</div></span>
+    <span class="summary_desc"><div class='inline'><p>Same as <code>submit</code> but raises a <code>FormDidNotSubmitError</code> if the form is not valid.</p></div></span>
   
 </li>
 
       
     </ul>
+    
   
 
 
@@ -391,9 +381,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Returns a new instance of Base.</p>
-
+    <p>Returns a new instance of Base.</p>
 
   </div>
 </div>
@@ -441,9 +429,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>The list of attribute names that have been passed to the form during the last call to ‘assign_form_attributes` or `submit`</p>
-
+    <p>The list of attribute names that have been passed to the form
+during the last call to <code>assign_form_attributes</code> or <code>submit</code></p>
 
   </div>
 </div>
@@ -489,9 +476,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Defines to which object the form should delegate the active model methods This is useful so ‘form_for`/`form_with` can automatically deduce the url and method to use</p>
-
+    <p>Defines to which object the form should delegate the active model methods
+This is useful so <code>form_for</code>/<code>form_with</code> can automatically deduce the url and method to use</p>
 
   </div>
 </div>
@@ -509,9 +495,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the class of the object to proxy</p>
-</div>
+        <div class='inline'><p>the class of the object to proxy</p></div>
       
     </li>
   
@@ -525,9 +509,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>where to delegate the object to, for example: ‘:@user`</p>
-</div>
+        <div class='inline'><p>where to delegate the object to, for example: <code>:@user</code></p></div>
       
     </li>
   
@@ -574,9 +556,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Adds the errors from a model to the form</p>
-
+    <p>Adds the errors from a model to the form</p>
 
   </div>
 </div>
@@ -594,9 +574,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>the model to add the errors from</p>
-</div>
+        <div class='inline'><p>the model to add the errors from</p></div>
       
     </li>
   
@@ -609,16 +587,16 @@
       <pre class="lines">
 
 
-89
-90
-91
-92
-93
-94
-95</pre>
+105
+106
+107
+108
+109
+110
+111</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 105</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_add_errors_from'>add_errors_from</span><span class='lparen'>(</span><span class='id identifier rubyid_model'>model</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_model'>model</span><span class='period'>.</span><span class='id identifier rubyid_errors'>errors</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_error'>error</span><span class='op'>|</span>
@@ -635,7 +613,7 @@
       <div class="method_details ">
   <h3 class="signature " id="assign_form_attributes-instance_method">
   
-    #<strong>assign_form_attributes</strong>(params)  &#x21d2; <tt>Object</tt> 
+    #<strong>assign_form_attributes</strong>(params = nil, **options)  &#x21d2; <tt>Object</tt> 
   
 
   
@@ -643,9 +621,10 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Assigns the attributes of the form from the params This method is called by the ‘submit` method, but can also be called directly if you need to assign the attributes without submitting the form for example if you want to refresh the form with new data</p>
-
+    <p>Assigns the attributes of the form from the params
+This method is called by the <code>submit</code> method, but can also be called
+directly if you need to assign the attributes without submitting the form
+for example if you want to refresh the form with new data</p>
 
   </div>
 </div>
@@ -661,15 +640,51 @@
         <span class='type'>(<tt>Hash</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
-        <div class='inline'>
-<p>the params to assign the attributes from</p>
-</div>
+        <div class='inline'><p>the params to assign the attributes from</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>optional keyword arguments</p></div>
       
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>**options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:overwrite_missing</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>whether to overwrite missing attributes with their default value or nil</p></div>
+          
+        </li>
+      
+    </ul>
+  
 
 
 </div><table class="source_code">
@@ -678,8 +693,6 @@
       <pre class="lines">
 
 
-53
-54
 55
 56
 57
@@ -687,17 +700,39 @@
 59
 60
 61
-62</pre>
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 55</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_assign_form_attributes'>assign_form_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_assign_form_attributes'>assign_form_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_overwrite_missing'>overwrite_missing</span> <span class='op'>=</span> <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+    <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_options'>options</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:overwrite_missing</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
   <span class='id identifier rubyid_run_callbacks'>run_callbacks</span> <span class='symbol'>:assign_form_attributes</span> <span class='kw'>do</span>
     <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='const'>ActionController</span><span class='op'>::</span><span class='const'>Parameters</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>ActionController</span><span class='op'>::</span><span class='const'>Parameters</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_attribute_names'>attribute_names</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_attribute'>attribute</span><span class='op'>|</span>
       <span class='id identifier rubyid_default_value'>default_value</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid__default_attributes'>_default_attributes</span><span class='lbracket'>[</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rbracket'>]</span><span class='op'>&amp;.</span><span class='id identifier rubyid_value_before_type_cast'>value_before_type_cast</span>
-      <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='symbol'>:&quot;#{</span><span class='id identifier rubyid_attribute'>attribute</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='op'>&amp;.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_default_value'>default_value</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='op'>&amp;.</span><span class='id identifier rubyid_key?'>key?</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='symbol'>:&quot;#{</span><span class='id identifier rubyid_attribute'>attribute</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='op'>&amp;.</span><span class='id identifier rubyid_dig'>dig</span><span class='lparen'>(</span><span class='id identifier rubyid_attribute'>attribute</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>elsif</span> <span class='id identifier rubyid_overwrite_missing'>overwrite_missing</span>
+        <span class='id identifier rubyid_public_send'>public_send</span><span class='lparen'>(</span><span class='symbol'>:&quot;#{</span><span class='id identifier rubyid_attribute'>attribute</span><span class='embexpr_end'>}</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_default_value'>default_value</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
     <span class='kw'>end</span>
     <span class='ivar'>@assigned_attribute_names</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_slice'>slice</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_attribute_names'>attribute_names</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span>
   <span class='kw'>end</span>
@@ -788,7 +823,7 @@
       <div class="method_details ">
   <h3 class="signature " id="submit-instance_method">
   
-    #<strong>submit</strong>(params)  &#x21d2; <tt>Boolean</tt> 
+    #<strong>submit</strong>(params = nil, **options)  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -796,9 +831,8 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Submits the form, assigning the attributes from the params, running validations and calling the ‘perform` method if the form is valid</p>
-
+    <p>Submits the form, assigning the attributes from the params,
+running validations and calling the <code>perform</code> method if the form is valid</p>
 
   </div>
 </div>
@@ -814,15 +848,51 @@
         <span class='type'>(<tt>Hash</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
-        <div class='inline'>
-<p>the params to assign the attributes from</p>
-</div>
+        <div class='inline'><p>the params to assign the attributes from</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>optional keyword arguments</p></div>
       
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>**options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:overwrite_missing</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>whether to overwrite missing attributes with their default value or nil</p></div>
+          
+        </li>
+      
+    </ul>
+  
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -835,9 +905,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the form is valid and the ‘perform` method returned something truthy</p>
-</div>
+        <div class='inline'><p>true if the form is valid and the <code>perform</code> method returned something truthy</p></div>
       
     </li>
   
@@ -849,21 +917,21 @@
       <pre class="lines">
 
 
-69
-70
-71
-72
-73
-74
-75
-76</pre>
+83
+84
+85
+86
+87
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 83</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_submit'>submit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_submit'>submit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_run_callbacks'>run_callbacks</span> <span class='symbol'>:submit</span> <span class='kw'>do</span>
-    <span class='id identifier rubyid_assign_form_attributes'>assign_form_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_assign_form_attributes'>assign_form_attributes</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
     <span class='op'>!</span><span class='op'>!</span><span class='lparen'>(</span><span class='id identifier rubyid_valid?'>valid?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_perform'>perform</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="../HyperActiveForm.html" title="HyperActiveForm (module)">HyperActiveForm</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="CancelFormSubmit.html" title="HyperActiveForm::CancelFormSubmit (class)">CancelFormSubmit</a></span></span>
@@ -877,7 +945,7 @@
       <div class="method_details ">
   <h3 class="signature " id="submit!-instance_method">
   
-    #<strong>submit!</strong>(params)  &#x21d2; <tt>Boolean</tt> 
+    #<strong>submit!</strong>(params = nil, **options)  &#x21d2; <tt>Boolean</tt> 
   
 
   
@@ -885,9 +953,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
-<p>Same as ‘submit` but raises a `FormDidNotSubmitError` if the form is not valid</p>
-
+    <p>Same as <code>submit</code> but raises a <code>FormDidNotSubmitError</code> if the form is not valid</p>
 
   </div>
 </div>
@@ -903,15 +969,51 @@
         <span class='type'>(<tt>Hash</tt>)</span>
       
       
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
       
         &mdash;
-        <div class='inline'>
-<p>the params to assign the attributes from</p>
-</div>
+        <div class='inline'><p>the params to assign the attributes from</p></div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>options</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>optional keyword arguments</p></div>
       
     </li>
   
 </ul>
+
+  
+    
+    
+    
+    
+    <p class="tag_title">Options Hash (<tt>**options</tt>):</p>
+    <ul class="option">
+      
+        <li>
+          <span class="name">:overwrite_missing</span>
+          <span class="type">(<tt>Boolean</tt>)</span>
+          <span class="default">
+            
+          </span>
+          
+            &mdash; <div class='inline'><p>whether to overwrite missing attributes with their default value or nil</p></div>
+          
+        </li>
+      
+    </ul>
+  
 
 <p class="tag_title">Returns:</p>
 <ul class="return">
@@ -924,9 +1026,7 @@
       
       
         &mdash;
-        <div class='inline'>
-<p>true if the form is valid and the ‘perform` method returned something truthy</p>
-</div>
+        <div class='inline'><p>true if the form is valid and the <code>perform</code> method returned something truthy</p></div>
       
     </li>
   
@@ -938,15 +1038,15 @@
       <pre class="lines">
 
 
-82
-83
-84</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/hyper_active_form/base.rb', line 98</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_submit!'>submit!</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_submit'>submit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../HyperActiveForm.html" title="HyperActiveForm (module)">HyperActiveForm</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="FormDidNotSubmitError.html" title="HyperActiveForm::FormDidNotSubmitError (class)">FormDidNotSubmitError</a></span></span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_submit!'>submit!</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_submit'>submit</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="../HyperActiveForm.html" title="HyperActiveForm (module)">HyperActiveForm</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="FormDidNotSubmitError.html" title="HyperActiveForm::FormDidNotSubmitError (class)">FormDidNotSubmitError</a></span></span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -958,9 +1058,9 @@
 </div>
 
       <div id="footer">
-  Generated on Mon Jan 13 17:26:04 2025 by
+  Generated on Tue Aug 25 18:22:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.3.1).
+  0.9.45 (ruby-4.0.6).
 </div>
 
     </div>

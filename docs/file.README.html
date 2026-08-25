@@ -6,13 +6,13 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.37
+    &mdash; Documentation by YARD 0.9.45
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "README";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="file_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,49 +59,29 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-E2-9C-A8+HyperActiveForm+-E2-9C-A8">✨ HyperActiveForm ✨</h1>
-
+      <div id="content"><div id='filecontents'><h1 id="__HyperActiveForm__">✨ HyperActiveForm ✨</h1>
 <p>HyperActiveForm is a simple form object implementation for Rails.</p>
-
 <p>Form objects are objects that encapsulate form logic and validations, they allow to extract the business logic out of the controller and models into specialized objects.</p>
-
-<p>HyperActiveForm’s form objects mimic the ActiveModel API, so they work out of the box with Rails’ form helpers, and allow you to use the ActiveModel validations you already know.</p>
-
+<p>HyperActiveForm's form objects mimic the ActiveModel API, so they work out of the box with Rails' form helpers, and allow you to use the ActiveModel validations you already know.</p>
 <p>This allows you to only keep strictly necessary validations in the model, and have business logic validations in the form object. This is especially useful when you want different validations to be applied depending on the context.</p>
-
-<h2 id="label-Installation">Installation</h2>
-
-<p>Add this line to your application’s Gemfile:</p>
-
+<h2 id="Installation">Installation</h2>
+<p>Add this line to your application's Gemfile:</p>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>hyperactiveform</span><span class='tstring_end'>&#39;</span></span>
 </code></pre>
-
 <p>And then execute:</p>
-
 <pre class="code ruby"><code class="ruby">$ bundle install
 </code></pre>
-
 <p>Run the install generator:</p>
-
 <pre class="code ruby"><code class="ruby">$ rails generate hyper_active_form:install
 </code></pre>
-
 <p>this will create an <code>ApplicationForm</code> class in your app/forms directory. You can use it as a base class for your form objects.</p>
-
-<h2 id="label-Generators">Generators</h2>
-
+<h2 id="Generators">Generators</h2>
 <p>You can <a href="https://guides.rubyonrails.org/configuring.html#configuring-generators">generate</a> a form and its tests with the following command:</p>
-
 <pre class="code ruby"><code class="ruby">$ rails generate form FooBar
 </code></pre>
-
 <p>This will create the <code>FooBarForm</code></p>
-
-<h2 id="label-Usage">Usage</h2>
-
+<h2 id="Usage">Usage</h2>
 <p>Here is an example of an <code>HyperActiveForm</code> form object:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>ProfileForm</span> <span class='op'>&lt;</span> <span class='const'>ApplicationForm</span>
   <span class='comment'># proxy_for is used to delegate the model name to the class, and some methods to the object
 </span>  <span class='comment'># this helps use `form_with` in views without having to specify the url
@@ -133,9 +115,7 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
 <p>The controller would look like this:</p>
-
 <pre class="code ruby"><code class="ruby">class UsersController &lt; ApplicationController
 
   def edit
@@ -151,10 +131,8 @@
     end
   end
 </code></pre>
-
 <p>And the view would look like this:</p>
-
-<pre class="code ruby"><code class="ruby">&lt;%= form_with(model: @form) do |f| %&gt;
+<pre class="code erb"><code class="erb">&lt;%= form_with(model: @form) do |f| %&gt;
   &lt;%= f.text_field :first_name %&gt;
   &lt;%= f.text_field :last_name %&gt;
   &lt;%= f.date_field :birth_date %&gt;
@@ -162,28 +140,18 @@
   &lt;%= f.submit %&gt;
 &lt;% end %&gt;
 </code></pre>
-
-<h3 id="label-Understanding+proxy_for">Understanding <code>proxy_for</code></h3>
-
+<h3 id="Understanding__proxy_for_">Understanding <code>proxy_for</code></h3>
 <p><code>HyperActiveForm</code> mimics a model object, you can use <code>proxy_for</code> to tell it which class and object to delegate to.</p>
-
 <p>When using <code>form_for</code> or <code>form_with</code>, Rails will choose the URL and method based on the object, according to the persisted state of the object and its model name.</p>
-
 <p>The first argument of <code>proxy_for</code> is the class of the object, and the second argument is the name of the instance variable that holds the object.</p>
-
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>ProfileForm</span> <span class='op'>&lt;</span> <span class='const'>ApplicationForm</span>
   <span class='id identifier rubyid_proxy_for'>proxy_for</span> <span class='const'>User</span><span class='comma'>,</span> <span class='symbol'>:@user</span> <span class='comment'># Will delegate to @user
 </span><span class='kw'>end</span>
 </code></pre>
-
-<p>If you pass an url and method yourself, you don’t need to use <code>proxy_for</code>.</p>
-
-<h3 id="label-Understanding+setup">Understanding <code>setup</code></h3>
-
+<p>If you pass an url and method yourself, you don't need to use <code>proxy_for</code>.</p>
+<h3 id="Understanding__setup_">Understanding <code>setup</code></h3>
 <p><code>setup</code> is called just after the form is initialized, and is used to pre-fill the form with data from the object.</p>
-
 <p><code>setup</code> will receive the same arguments as the initializer, so you can use it to pass any data you need to the form.</p>
-
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>ProfileForm</span> <span class='op'>&lt;</span> <span class='const'>ApplicationForm</span>
   <span class='kw'>def</span> <span class='id identifier rubyid_setup'>setup</span><span class='lparen'>(</span><span class='id identifier rubyid_user'>user</span><span class='rparen'>)</span>
     <span class='ivar'>@user</span> <span class='op'>=</span> <span class='id identifier rubyid_user'>user</span>
@@ -193,23 +161,19 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Understanding+perform">Understanding <code>perform</code></h3>
-
+<h3 id="Understanding__perform_">Understanding <code>perform</code></h3>
 <p>When using <code>submit</code> or <code>submit!</code>, <code>HyperActiveForm</code> will first assign the form attributes to the object, then perform the validations, then call <code>perform</code> on the object if the form is valid.</p>
-
 <p>The <code>perform</code> method is where you should do the actual form logic, like updating the object or creating a new one.</p>
-
 <p>If the return value of <code>perform</code> is not truthy, <code>HyperActiveForm</code> will consider the form encountered an error and <code>submit</code> will return <code>false</code>, or <code>submit!</code> will raise a <code>HyperActiveForm::FormDidNotSubmitError</code>.</p>
-
+<p>By default, <code>submit</code> and <code>assign_form_attributes</code> overwrite attributes that are missing from the params with their default value or <code>nil</code>. Pass <code>overwrite_missing: false</code> with an explicit params hash to preserve their current values:</p>
+<pre class="code ruby"><code class="ruby"><span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_submit'>submit</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>first_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>John</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>overwrite_missing:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+<span class='ivar'>@form</span><span class='period'>.</span><span class='id identifier rubyid_assign_form_attributes'>assign_form_attributes</span><span class='lparen'>(</span><span class='lbrace'>{</span> <span class='label'>first_name:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>John</span><span class='tstring_end'>&quot;</span></span> <span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>overwrite_missing:</span> <span class='kw'>false</span><span class='rparen'>)</span>
+</code></pre>
+<p>Explicitly provided values, including <code>nil</code>, are still assigned. <code>submit!</code> accepts the same option.</p>
 <p>At any point during the form processing, you can raise <code>HyperActiveForm::CancelForm</code> to cancel the form submission, this is the same as returning <code>false</code>.</p>
-
-<h2 id="label-Understanding+add_errors_from">Understanding add_errors_from</h2>
-
+<h2 id="Understanding_add_errors_from">Understanding add_errors_from</h2>
 <p><code>HyperActiveForm</code> provides a method to add errors from a model and apply them fo the form.</p>
-
 <p>This is useful when the underlying model has validations that are not set up in the form object, and you want them to be applied to the form.</p>
-
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>User</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
   <span class='id identifier rubyid_validates'>validates</span> <span class='symbol'>:first_name</span><span class='comma'>,</span> <span class='label'>presence:</span> <span class='kw'>true</span>
 <span class='kw'>end</span>
@@ -228,17 +192,11 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h3 id="label-Not+all+forms+map+to+a+single+model">Not all forms map to a single model</h3>
-
-<p>The power of <code>HyperActiveForm</code> is that you can use it to create forms that don’t map to a single model.</p>
-
+<h3 id="Not_all_forms_map_to_a_single_model">Not all forms map to a single model</h3>
+<p>The power of <code>HyperActiveForm</code> is that you can use it to create forms that don't map to a single model.</p>
 <p>Some forms can be used to create several models at once. Doing so without form objects can be tedious especially with nested attributes.</p>
-
 <p>Some forms dont map to any model at all, like a simple contact form that only sends an email and saves nothing in the database, or a sign in form that would only validate the credentials and return the instance of the connected user.</p>
-
 <p>One great example of such forms are search forms. You can use a form object to encapsulate the search logic :</p>
-
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>UserSearchForm</span> <span class='op'>&lt;</span> <span class='const'>ApplicationForm</span>
   <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:name</span>
   <span class='id identifier rubyid_attribute'>attribute</span> <span class='symbol'>:email</span>
@@ -263,9 +221,7 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
 <p>And in the controller:</p>
-
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>UsersController</span> <span class='op'>&lt;</span> <span class='const'>ApplicationController</span>
   <span class='kw'>def</span> <span class='id identifier rubyid_index'>index</span>
     <span class='ivar'>@form</span> <span class='op'>=</span> <span class='const'>UserSearchForm</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -274,13 +230,9 @@
   <span class='kw'>end</span>
 <span class='kw'>end</span>
 </code></pre>
-
-<h2 id="label-Callbacks">Callbacks</h2>
-
+<h2 id="Callbacks">Callbacks</h2>
 <p>HyperActiveForm provides callbacks for <code>assign_form_attributes</code> and <code>submit</code>.</p>
-
 <p>You can use these callbacks to run code before or after assigning the form attributes or before or after submitting the form.</p>
-
 <pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>ProfileForm</span> <span class='op'>&lt;</span> <span class='const'>ApplicationForm</span>
   <span class='comment'># ...
 </span>
@@ -295,13 +247,12 @@
     <span class='comment'># Do something before assigning the form attributes
 </span>  <span class='kw'>end</span>
 <span class='kw'>end</span>
-</code></pre>
-</div></div>
+</code></pre></div></div>
 
       <div id="footer">
-  Generated on Mon Jan 13 17:26:04 2025 by
+  Generated on Tue Aug 25 18:22:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.3.1).
+  0.9.45 (ruby-4.0.6).
 </div>
 
     </div>
