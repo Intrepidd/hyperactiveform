@@ -1,5 +1,8 @@
 ## [Unreleased]
 
+## [0.5.0] - 2026-08-25
+- Add the `overwrite_missing: false` option to `submit`, `submit!`, and `assign_form_attributes` to preserve current values for missing attributes instead of overwriting them with their default value or nil.
+
 ## [0.4.1] - 2025-05-12
 - Fixes a bug where if params contained expected falsey values, the form would treat them as nil.
   for instance `form.submit({likes_cat: false})` would set `likes_cat` to nil instead of false.
