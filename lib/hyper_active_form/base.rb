@@ -50,14 +50,22 @@ module HyperActiveForm
     # for example if you want to refresh the form with new data
     #
     # @param params [Hash] the params to assign the attributes from
-    def assign_form_attributes(params)
+    # @param options [Hash] optional keyword arguments
+    # @option options [Boolean] :overwrite_missing whether to overwrite missing attributes with their default value or nil
+    def assign_form_attributes(params = nil, **options)
+      overwrite_missing = if params.nil?
+        params = options
+      else
+        options.fetch(:overwrite_missing, true)
+      end
+
       run_callbacks :assign_form_attributes do
         params = ActionController::Parameters.new(params) unless params.is_a?(ActionController::Parameters)
         attribute_names.each do |attribute|
           default_value = self.class._default_attributes[attribute]&.value_before_type_cast
           if params&.key?(attribute)
-          public_send(:"#{attribute}=", params&.dig(attribute))
-          else
+            public_send(:"#{attribute}=", params&.dig(attribute))
+          elsif overwrite_missing
             public_send(:"#{attribute}=", default_value)
           end
         end
@@ -69,10 +77,12 @@ module HyperActiveForm
     # running validations and calling the `perform` method if the form is valid
     #
     # @param params [Hash] the params to assign the attributes from
+    # @param options [Hash] optional keyword arguments
+    # @option options [Boolean] :overwrite_missing whether to overwrite missing attributes with their default value or nil
     # @return [Boolean] true if the form is valid and the `perform` method returned something truthy
-    def submit(params)
+    def submit(params = nil, **options)
       run_callbacks :submit do
-        assign_form_attributes(params)
+        assign_form_attributes(params, **options)
         !!(valid? && perform)
       end
     rescue HyperActiveForm::CancelFormSubmit
@@ -82,9 +92,11 @@ module HyperActiveForm
     # Same as `submit` but raises a `FormDidNotSubmitError` if the form is not valid
     #
     # @param params [Hash] the params to assign the attributes from
+    # @param options [Hash] optional keyword arguments
+    # @option options [Boolean] :overwrite_missing whether to overwrite missing attributes with their default value or nil
     # @return [Boolean] true if the form is valid and the `perform` method returned something truthy
-    def submit!(params)
-      submit(params) || raise(HyperActiveForm::FormDidNotSubmitError)
+    def submit!(params = nil, **options)
+      submit(params, **options) || raise(HyperActiveForm::FormDidNotSubmitError)
     end
 
     # Adds the errors from a model to the form

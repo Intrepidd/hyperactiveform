@@ -147,6 +147,15 @@ The `perform` method is where you should do the actual form logic, like updating
 
 If the return value of `perform` is not truthy, `HyperActiveForm` will consider the form encountered an error and `submit` will return `false`, or `submit!` will raise a `HyperActiveForm::FormDidNotSubmitError`.
 
+By default, `submit` and `assign_form_attributes` overwrite attributes that are missing from the params with their default value or `nil`. Pass `overwrite_missing: false` with an explicit params hash to preserve their current values:
+
+```ruby
+@form.submit({ first_name: "John" }, overwrite_missing: false)
+@form.assign_form_attributes({ first_name: "John" }, overwrite_missing: false)
+```
+
+Explicitly provided values, including `nil`, are still assigned. `submit!` accepts the same option.
+
 At any point during the form processing, you can raise `HyperActiveForm::CancelForm` to cancel the form submission, this is the same as returning `false`.
 
 ## Understanding add_errors_from

@@ -53,6 +53,22 @@ RSpec.describe HyperActiveForm::Base do
       expect(form.hobbies).to eq([])
     end
 
+    it "does not overwrite missing attributes when requested" do
+      form = dummy_class.new(name: "John", age: 20)
+      form.likes_cats = true
+      form.assign_form_attributes({name: "Mike"}, overwrite_missing: false)
+      expect(form.name).to eq("Mike")
+      expect(form.age).to eq(20)
+      expect(form.likes_cats).to eq(true)
+    end
+
+    it "overwrites an explicitly provided nil when requested not to overwrite missing attributes" do
+      form = dummy_class.new(name: "John", age: 20)
+      form.likes_cats = true
+      form.assign_form_attributes({likes_cats: nil}, overwrite_missing: false)
+      expect(form.likes_cats).to eq(nil)
+    end
+
     it "runs the assign_form_attributes callback" do
       form = dummy_class.new(name: "John", age: 20)
       expect(form).to receive(:run_callbacks).with(:assign_form_attributes)
@@ -80,6 +96,27 @@ RSpec.describe HyperActiveForm::Base do
           expect(callable).to receive(:call).with({"name" => "Fred", "age" => 19, "hobbies" => [], "likes_cats" => false})
           form.submit(name: "Fred", age: 19, likes_cats: false)
         end
+      end
+
+      it "does not overwrite missing attributes when requested" do
+        form = dummy_class.new(name: "John", age: 20, callable:)
+        form.likes_cats = true
+        expect(callable).to receive(:call).with({"name" => "Fred", "age" => 20, "hobbies" => [], "likes_cats" => true})
+        expect(form.submit({name: "Fred"}, overwrite_missing: false)).to eq(true)
+      end
+
+      it "keeps overwrite_missing as a form field in keyword-style params" do
+        form_class = Class.new(HyperActiveForm::Base) do
+          attribute :overwrite_missing
+
+          def perform
+            true
+          end
+        end
+        form = form_class.new
+
+        expect(form.submit(overwrite_missing: false)).to eq(true)
+        expect(form.overwrite_missing).to eq(false)
       end
 
     end
@@ -123,6 +160,12 @@ RSpec.describe HyperActiveForm::Base do
         form = dummy_class.new(name: "John", age: 20)
         expect(form).to receive(:submit).and_return(false)
         expect { form.submit!(name: "Fred", age: 19) }.to raise_error(HyperActiveForm::FormDidNotSubmitError)
+      end
+
+      it "forwards overwrite_missing" do
+        form = dummy_class.new(name: "John", age: 20)
+        expect(form).to receive(:submit).with({name: "Fred"}, overwrite_missing: false).and_return(true)
+        expect(form.submit!({name: "Fred"}, overwrite_missing: false)).to eq(true)
       end
     end
   end
